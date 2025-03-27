@@ -3,11 +3,13 @@ package org;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 public class TreeInTxtFile {
+
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             System.out.println("You must enter a path as argument");
@@ -18,6 +20,7 @@ public class TreeInTxtFile {
             System.out.println("The argument is not a valid directory");
         }
 
+        clearingTxtFileIfExists();
         developingTree(myDirectory, "");
 
     }
@@ -39,14 +42,33 @@ public class TreeInTxtFile {
         }
     }
 
-    public static void writingTree(String myStringToWrite){
-        String projectDir = System.getProperty("user.dir");
-        Path path = Paths.get(projectDir,"..", "..", "directory.txt");
-        try(FileWriter writer = new FileWriter(path.toString(), true)){
+
+    public static void writingTree(String myStringToWrite) {
+        Path path = settingDirectoryDocumentPath();
+        try (FileWriter writer = new FileWriter(path.toString(), true)) {
             writer.write(myStringToWrite);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public static void clearingTxtFileIfExists() {
+        Path path = settingDirectoryDocumentPath();
+        if(Files.exists(path)) {
+            try (
+                    FileWriter writer = new FileWriter(path.toString())) {
+                writer.write("");
+            } catch (
+                    IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static Path settingDirectoryDocumentPath(){
+        String projectDir = System.getProperty("user.dir");
+        Path path = Paths.get(projectDir, "..", "..", "directory.txt");
+        return path;
+
+    }
 }
