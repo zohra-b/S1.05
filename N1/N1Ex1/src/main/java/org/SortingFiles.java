@@ -19,7 +19,7 @@ public class SortingFiles {
 //        //File myDirectory = new File(args[0]);
 //        //Path myDirectory = Paths.get(args[0]);
 //        Path myDirectory = Path.of(args[0]);
-//        List<String> myFiles = null;
+//        List<String> myFiles = Collections.emptyList();
 //        if(!Files.exists(myDirectory) || !Files.isDirectory(myDirectory)) {
 //            System.out.println("This path (" + myDirectory + ") doesnt exist");
 //        } else {

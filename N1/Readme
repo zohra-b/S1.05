@@ -1,0 +1,32 @@
+N1Ex1
+- to COMPILE my file :from my main/java directory, use the following command (org being the name of my package):
+javac org\SortingFiles.java
+to EXECUTE it : (if we want to print assets directory, you may choose another path)
+java org.SortingFiles ..\..\..\src\assets\
+
+N1Ex2
+- to COMPILE my file : from my main/java directory :(org is my package name inside java directory) :
+javac -d bin org\DirectoryTree.java
+- to EXECUTE : (if we want to print assets directory, you may choose another path)
+java -cp bin org.DirectoryTree ..\..\assets (from java , we step back to main then src and down to assets)
+
+N1Ex3:
+- to COMPILE my file : from my main/java directory :(org is my package name inside java directory) :
+javac -d bin org\TreeInTxtFile.java
+- to EXECUTE :(if we want to print assets directory, you may choose another path)
+java -cp bin org.TreeInTxtFile ..\..\assets (from java , we step back to main then src and down to assets)
+
+
+N1Ex4:
+- to COMPILE my file : from my main/java directory :(org is my package name inside java directory) :
+javac -d bin org\PrintFile.java
+- to EXECUTE :(if we want to print assets directory, you may choose another path)
+java -cp bin org.PrintFile ..\..\assets (from java , we step back to main then src and down to assets)
+
+N1Ex5 :
+- to COMPILE my file : from my main/java directory :(org is my package name inside java directory) :
+javac -d bin org/*
+- to EXECUTE
+java -cp bin org.Main
+
+
