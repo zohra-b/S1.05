@@ -7,11 +7,23 @@
     <groupId>org</groupId>
     <artifactId>S1.05-JavaUtils</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>N1</module>
+        <module>N1/N1Ex1</module>
+        <module>N1/N1Ex1</module>
+        <module>N1/N1Ex3</module>
+        <module>N1/N1Ex4</module>
+        <module>N1/N1Ex5</module>
+        <module>N2</module>
+        <module>N3</module>
+        <module>N3</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
 </project>
