@@ -16,12 +16,16 @@ public class TreeInTxtFile {
         Properties config = myProperties();
         String projectDir = System.getProperty("user.dir");
 
-        String pathToFilesToRead = projectDir + config.getProperty("pathToFilesToRead");
-        String pathToOutputDirectoryFile = projectDir + config.getProperty("pathToOutputDirectoryFile");
+        String pathToFilesToRead = Paths.get(projectDir + config.getProperty("pathToFilesToRead")).toString();
+        String pathToOutputDirectoryFile = Paths.get(projectDir + config.getProperty("pathToOutputDirectoryFile")).toString();
         String indent = "";
 
 
+        System.out.println("pathToOutputDirectoryFile :"+ pathToOutputDirectoryFile);
+
+        System.out.println("pathToFilesToRead : " +pathToFilesToRead );
         File myDirectory = new File(pathToFilesToRead);
+
         if (!myDirectory.isDirectory() || !myDirectory.exists()) {
             System.out.println("file not found. Verify your path");
         }
@@ -34,7 +38,7 @@ public class TreeInTxtFile {
     public static Properties myProperties() {
         Properties myProperties = new Properties();
 
-        try (InputStream myInput = TreeInTxtFile.class.getResourceAsStream("/assets/config.properties")) {
+        try (InputStream myInput = TreeInTxtFile.class.getClassLoader().getResourceAsStream("config.properties")) {
             myProperties.load(myInput);
         } catch (IOException e) {
             System.out.println(e.getMessage());
