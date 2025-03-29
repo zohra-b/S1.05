@@ -2,6 +2,7 @@ package org;
 
 import javax.crypto.*;
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,15 +16,18 @@ public class TreeInTxtFile {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         Properties config = myProperties();
-        String projectDir = System.getProperty("user.dir");
-        String pathToFilesToRead = projectDir + config.getProperty("pathToFilesToRead");
 
+        String projectDir = System.getProperty("user.dir");
+
+        String pathToFilesToRead = projectDir + config.getProperty("pathToFilesToRead");
         String pathToOutputDirectoryFile = projectDir + config.getProperty("pathToOutputDirectoryFile");
         String pathToEncryptedFile = projectDir + config.getProperty("pathToEncryptedFile");
         String pathToDecryptedFile = projectDir + config.getProperty("pathToDecryptedFile");
         String indent = "";
 
         SecretKey myKey = myKey();
+
+
         File myDirectory = new File(pathToFilesToRead);
         if (!myDirectory.isDirectory() || !myDirectory.exists()) {
             System.out.println("file not found. Verify your path");
@@ -38,11 +42,18 @@ public class TreeInTxtFile {
 
     public static Properties myProperties() {
         Properties myProperties = new Properties();
+        //Path configUrl = Paths.get("C:/Users/zocat/IdeaProjects/S1.05-JavaUtils/N3/src/main/resources/config.properties");
 
-        try (InputStream myInput = TreeInTxtFile.class.getResourceAsStream("/assets/config.properties")) {
+
+        try (InputStream myInput =(
+                     TreeInTxtFile.class.getClassLoader().getResourceAsStream("config.properties"))) {
+
+            if(myInput == null){
+                throw new FileNotFoundException("config.properties not found");
+            }
             myProperties.load(myInput);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error loading properties file: " + e.getMessage());
         }
         return myProperties;
     }
@@ -112,7 +123,7 @@ public class TreeInTxtFile {
                 cipherOut.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
         System.out.println("An encrypted file has been successfully generated in " + outputFile);
     }
@@ -132,7 +143,7 @@ public class TreeInTxtFile {
                 out.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }

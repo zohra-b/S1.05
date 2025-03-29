@@ -1,0 +1,12 @@
+TO COMPILE : from S1.05-JavaUtils\N3\src\main\java>
+javac -d bin org\TreeInTxtFile.java
+TO EXECUTE
+java -cp bin org.TreeInTxtFile
+
+If it doesn't work, please verify that a copy of the file config.properties has been created in S1.05-JavaUtils\N3\src\main\java\bin
+Otherwise, try gain :
+javac -d bin org\TreeInTxtFile.java
+then
+copy ../resources/config.properties bin/config.properties
+then
+java -cp bin org.TreeInTxtFile

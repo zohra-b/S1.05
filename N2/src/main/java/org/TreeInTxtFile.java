@@ -1,9 +1,6 @@
 package org;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,16 +13,13 @@ public class TreeInTxtFile {
         Properties config = myProperties();
         String projectDir = System.getProperty("user.dir");
 
-        String pathToFilesToRead = Paths.get(projectDir + config.getProperty("pathToFilesToRead")).toString();
-        String pathToOutputDirectoryFile = Paths.get(projectDir + config.getProperty("pathToOutputDirectoryFile")).toString();
+
+        String pathToFilesToRead = projectDir + config.getProperty("pathToFilesToRead");
+        String pathToOutputDirectoryFile = projectDir + config.getProperty("pathToOutputDirectoryFile");
         String indent = "";
 
 
-        System.out.println("pathToOutputDirectoryFile :"+ pathToOutputDirectoryFile);
-
-        System.out.println("pathToFilesToRead : " +pathToFilesToRead );
         File myDirectory = new File(pathToFilesToRead);
-
         if (!myDirectory.isDirectory() || !myDirectory.exists()) {
             System.out.println("file not found. Verify your path");
         }
