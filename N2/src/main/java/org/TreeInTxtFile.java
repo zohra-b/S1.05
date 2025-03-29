@@ -1,9 +1,6 @@
 package org;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +12,7 @@ public class TreeInTxtFile {
     public static void main(String[] args) throws IOException {
         Properties config = myProperties();
         String projectDir = System.getProperty("user.dir");
+
 
         String pathToFilesToRead = projectDir + config.getProperty("pathToFilesToRead");
         String pathToOutputDirectoryFile = projectDir + config.getProperty("pathToOutputDirectoryFile");
@@ -34,7 +32,7 @@ public class TreeInTxtFile {
     public static Properties myProperties() {
         Properties myProperties = new Properties();
 
-        try (InputStream myInput = TreeInTxtFile.class.getResourceAsStream("/assets/config.properties")) {
+        try (InputStream myInput = TreeInTxtFile.class.getClassLoader().getResourceAsStream("config.properties")) {
             myProperties.load(myInput);
         } catch (IOException e) {
             System.out.println(e.getMessage());

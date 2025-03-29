@@ -28,5 +28,3 @@ N1Ex5 :
 javac -d bin org/*
 - to EXECUTE
 java -cp bin org.Main
-
-
